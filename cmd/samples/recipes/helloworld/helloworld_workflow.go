@@ -34,6 +34,9 @@ func Workflow(ctx workflow.Context, name string) error {
 
 	logger := workflow.GetLogger(ctx)
 	logger.Info("helloworld workflow started")
+
+	workflow.GetVersion(ctx, "step1", workflow.DefaultVersion, 1)
+
 	var helloworldResult string
 	err := workflow.ExecuteActivity(ctx, helloworldActivity, name).Get(ctx, &helloworldResult)
 	if err != nil {
